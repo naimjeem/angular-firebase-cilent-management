@@ -19,6 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 // Services
 import { ClientService } from './services/client.service';
+// Environment
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '',               component: DashboardComponent },
@@ -26,14 +28,6 @@ const appRoutes: Routes = [
   { path: 'login',          component: LoginComponent     },
   { path: 'add-client',     component: AddClientComponent }
 ];
-
-export const firebaseConfig = {
-  apiKey: "*************",
-  authDomain: "**************",
-  databaseURL: "*************",
-  storageBucket: "*********",
-  messagingSenderId: "********"
-};
 
 @NgModule({
   declarations: [
@@ -52,7 +46,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     AngularFireAuth,
