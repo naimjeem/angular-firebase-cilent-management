@@ -6,10 +6,10 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyAY6eh6FTV6Nx4j05uQWX5XHsgr4EUjwNU",
-    authDomain: "*******",
-    databaseURL: "*******",
-    storageBucket: "*******",
-    messagingSenderId: "*****"
+    apiKey: '***********',
+    authDomain: '*******',
+    databaseURL: '*******',
+    storageBucket: '*******',
+    messagingSenderId: '*****'
   }
 };
