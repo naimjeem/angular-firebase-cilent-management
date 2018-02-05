@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-client',
@@ -11,7 +12,8 @@ export class AddClientComponent implements OnInit {
   disableBalance: boolean;
 
   constructor(
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class AddClientComponent implements OnInit {
     if (!this.form.valid) {
       console.log('not valid');
     }
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 }
