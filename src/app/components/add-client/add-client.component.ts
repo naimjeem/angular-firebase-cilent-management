@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-add-client',
@@ -9,10 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddClientComponent implements OnInit {
   form: FormGroup;
-  disableBalance: boolean;
+  disableBalance: true;
 
   constructor(
+    private router: Router,
     private builder: FormBuilder,
+    private clientService: ClientService,
     private toastr: ToastrService
   ) { }
 
@@ -24,14 +28,18 @@ export class AddClientComponent implements OnInit {
       phone: ['', Validators.required],
       balance: [{value: 0,  disabled: true}],
     });
-    this.disableBalance = true;
   }
 
   submit() {
     if (!this.form.valid) {
       console.log('not valid');
+      this.toastr.error('Valiadation Error', 'Please fill up required fields');
+    } else {
+      this.clientService.addClients(this.form.value);
+      this.toastr.success(this.form.get('firstName').value, 'is added');
+      this.router.navigate(['/']);
     }
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    // this.toastr.error('Hello world!', 'Toastr fun!');
   }
 
 }
