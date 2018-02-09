@@ -6,7 +6,7 @@ import { Client } from '../models/client.interface';
 @Injectable()
 export class ClientService {
   clients: FirebaseListObservable<any[]>;
-  client: FirebaseObjectObservable<any[]>;
+  client: FirebaseObjectObservable<any>;
 
   constructor(
     public af: AngularFireDatabase
@@ -16,6 +16,11 @@ export class ClientService {
 
   getClients() {
     return this.clients;
+  }
+
+  getClient(id: string) {
+    this.client = this.af.object('/clients/' + id) as FirebaseObjectObservable<Client>;
+    return this.client;
   }
 
   addClients(client: Client) {
